@@ -8,7 +8,6 @@ public class HashMapImplementation {
 
         private int n; // nodes
         private int N; // bucket size
-        double lambda;
 
         private class Node {
             K key;
