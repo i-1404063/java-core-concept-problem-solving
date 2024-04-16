@@ -1,6 +1,6 @@
 package leetcode_75;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class TwoCloseString {
 
@@ -12,7 +12,7 @@ public class TwoCloseString {
         }
 
         HashMap<Character, Integer> map = new HashMap<>();
-        for (char ch : word1.toCharArray()) {
+        for (char ch : word2.toCharArray()) {
             if (map.containsKey(ch)) {
                 map.put(ch, map.get(ch) + 1);
             } else {
@@ -20,15 +20,16 @@ public class TwoCloseString {
             }
         }
 
-        for (int i = 0; i < len1; i++) {
-
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + "   " + entry.getValue());
         }
 
+        return true;
     }
 
     public static void main(String... args) {
-        String s1 = "abc";
-        String s2 = "bca";
+        String s1 = "cabbba";
+        String s2 = "abbccc";
         System.out.println(twoCloseString(s1, s2));
     }
 }
