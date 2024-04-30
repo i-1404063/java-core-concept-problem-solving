@@ -11,8 +11,13 @@ public class TwoCloseString {
             return false;
         }
 
-        HashMap<Character, Integer> map = new HashMap<>();
-        for (char ch : word2.toCharArray()) {
+        Set<Character> set = new HashSet<>();
+        Set<Character> set2 = new HashSet<>();
+        Map<Character, Integer> map = new HashMap<>();
+        Map<Character, Integer> map2 = new HashMap<>();
+
+        for (char ch : word1.toCharArray()) {
+            set.add(ch);
             if (map.containsKey(ch)) {
                 map.put(ch, map.get(ch) + 1);
             } else {
@@ -20,16 +25,34 @@ public class TwoCloseString {
             }
         }
 
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + "   " + entry.getValue());
+        for (char ch : word2.toCharArray()) {
+            set2.add(ch);
+            if (map2.containsKey(ch)) {
+                map2.put(ch, map2.get(ch) + 1);
+            } else {
+                map2.put(ch, 1);
+            }
+        }
+
+        if (!set.equals(set2)) {
+            return false;
+        }
+
+        for (int val : map2.values()) {
+            if (map.values().contains(val)) {
+                map.values().remove(val);
+            } else {
+                return false;
+            }
         }
 
         return true;
+
     }
 
     public static void main(String... args) {
-        String s1 = "cabbba";
-        String s2 = "abbccc";
+        String s1 = "aaabbbbccddeeeeefffff";
+        String s2 = "aaaaabbcccdddeeeeffff";
         System.out.println(twoCloseString(s1, s2));
     }
 }
